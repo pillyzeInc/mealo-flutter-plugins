@@ -790,6 +790,32 @@ class HealthPlugin(private var channel: MethodChannel? = null) :
                                 totalSteps += stepRec.count
                             }
 
+                            val routeLocations = mutableListOf<Map<String, Any>>()
+
+                            when (val exerciseRouteResult = record.exerciseRouteResult) {
+
+                                is ExerciseRouteResult.Data ->
+                                {
+                                    val locations = exerciseRouteResult.exerciseRoute.route.orEmpty()
+                                    for (location in locations) {
+                                        val locationMap = mapOf(
+                                            "latitude" to location.latitude as Any,
+                                            "longitude" to location.longitude as Any,
+                                            "altitude" to location.altitude as Any,
+                                            "timestamp" to location.time.toEpochMilli() as Any
+                                        )
+                                        routeLocations.add(locationMap)
+                                    }
+                                }
+                                is ExerciseRouteResult.ConsentRequired -> {
+                                    Log.d("FLUTTER_HEALTH", "Consent required")
+                                }
+                                is ExerciseRouteResult.NoData -> {
+                                    Log.d("FLUTTER_HEALTH", "No data")
+                                }
+                                else -> Unit
+                            }
+
                             // val metadata = (rec as Record).metadata
                             // Add final datapoint
                             healthConnectData.add(
