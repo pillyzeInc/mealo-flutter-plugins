@@ -605,18 +605,59 @@ const _$MenstrualFlowEnumMap = {
   MenstrualFlow.spotting: 'spotting',
 };
 
+RoutePoint _$RoutePointFromJson(Map<String, dynamic> json) => RoutePoint(
+  longitude: (json['longitude'] as num).toDouble(),
+  latitude: (json['latitude'] as num).toDouble(),
+  altitude: (json['altitude'] as num).toDouble(),
+  timestamp: (json['timestamp'] as num).toInt(),
+  horizontalAccuracy: (json['horizontalAccuracy'] as num?)?.toDouble(),
+  verticalAccuracy: (json['verticalAccuracy'] as num?)?.toDouble(),
+);
+
+Map<String, dynamic> _$RoutePointToJson(RoutePoint instance) {
+  final val = <String, dynamic>{
+    'longitude': instance.longitude,
+    'latitude': instance.latitude,
+    'altitude': instance.altitude,
+    'timestamp': instance.timestamp,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('horizontalAccuracy', instance.horizontalAccuracy);
+  writeNotNull('verticalAccuracy', instance.verticalAccuracy);
+  return val;
+}
+
 WorkoutSummary _$WorkoutSummaryFromJson(Map<String, dynamic> json) =>
     WorkoutSummary(
       workoutType: json['workoutType'] as String,
       totalDistance: json['totalDistance'] as num,
       totalEnergyBurned: json['totalEnergyBurned'] as num,
       totalSteps: json['totalSteps'] as num,
+      route: (json['route'] as List<dynamic>?)
+          ?.map((e) => RoutePoint.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$WorkoutSummaryToJson(WorkoutSummary instance) =>
-    <String, dynamic>{
-      'workoutType': instance.workoutType,
-      'totalDistance': instance.totalDistance,
-      'totalEnergyBurned': instance.totalEnergyBurned,
-      'totalSteps': instance.totalSteps,
-    };
+Map<String, dynamic> _$WorkoutSummaryToJson(WorkoutSummary instance) {
+  final val = <String, dynamic>{
+    'workoutType': instance.workoutType,
+    'totalDistance': instance.totalDistance,
+    'totalEnergyBurned': instance.totalEnergyBurned,
+    'totalSteps': instance.totalSteps,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('route', instance.route?.map((e) => e.toJson()).toList());
+  return val;
+}
