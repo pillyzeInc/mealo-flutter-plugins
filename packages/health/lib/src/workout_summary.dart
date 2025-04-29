@@ -64,6 +64,6 @@ class WorkoutSummary {
       'workoutType: $workoutType'
       'totalDistance: $totalDistance, '
       'totalEnergyBurned: $totalEnergyBurned, '
-      'totalSteps: $totalSteps',
+      'totalSteps: $totalSteps, '
       'route: ${route?.map((l) => l.toString()).join('\n')}';
 }
