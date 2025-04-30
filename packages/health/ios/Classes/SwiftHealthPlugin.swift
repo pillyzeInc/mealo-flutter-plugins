@@ -1032,7 +1032,8 @@ public class SwiftHealthPlugin: NSObject, FlutterPlugin {
                                             "latitude": loc.coordinate.latitude,
                                             "longitude": loc.coordinate.longitude,
                                             "altitude": loc.altitude,
-                                            "timestamp": Int(loc.timestamp.timeIntervalSince1970 * 1000)
+                                            "timestamp": Int(loc.timestamp.timeIntervalSince1970 * 1000),
+                                            "speed": loc.speed,
                                         ]
                                     }
                                     routeLocations.append(contentsOf: locationDicts)

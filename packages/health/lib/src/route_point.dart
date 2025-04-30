@@ -28,6 +28,8 @@ class RoutePoint {
   /// The vertical accuracy of the location.
   double? verticalAccuracy;
 
+  double? speed;
+
   RoutePoint({
     required this.longitude,
     required this.latitude,
@@ -35,6 +37,7 @@ class RoutePoint {
     required this.timestamp,
     this.horizontalAccuracy,
     this.verticalAccuracy,
+    this.speed,
   });
 
   /// Create a [RoutePoint] from json.
@@ -46,10 +49,11 @@ class RoutePoint {
 
   @override
   String toString() => '$runtimeType - '
-      'longitude: $longitude'
+      'longitude: $longitude, '
       'latitude: $latitude, '
       'altitude: $altitude, '
       'timestamp: $timestamp, '
       'horizontalAccuracy: $horizontalAccuracy, '
-      'verticalAccuracy: $verticalAccuracy';
+      'verticalAccuracy: $verticalAccuracy, '
+      'speed: $speed, ';
 }

@@ -612,6 +612,7 @@ RoutePoint _$RoutePointFromJson(Map<String, dynamic> json) => RoutePoint(
   timestamp: (json['timestamp'] as num).toInt(),
   horizontalAccuracy: (json['horizontalAccuracy'] as num?)?.toDouble(),
   verticalAccuracy: (json['verticalAccuracy'] as num?)?.toDouble(),
+  speed: (json['speed'] as num?)?.toDouble(),
 );
 
 Map<String, dynamic> _$RoutePointToJson(RoutePoint instance) {
@@ -620,6 +621,7 @@ Map<String, dynamic> _$RoutePointToJson(RoutePoint instance) {
     'latitude': instance.latitude,
     'altitude': instance.altitude,
     'timestamp': instance.timestamp,
+    'speed': instance.speed,
   };
 
   void writeNotNull(String key, dynamic value) {
