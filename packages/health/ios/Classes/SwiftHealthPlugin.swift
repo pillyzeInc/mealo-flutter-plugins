@@ -411,6 +411,9 @@ public class SwiftHealthPlugin: NSObject, FlutterPlugin {
                 }
             }
         }
+
+        // Always include read permission for workout routes
+        typesToRead.insert(HKSeriesType.workoutRoute())
         
         if #available(iOS 13.0, *) {
             healthStore.requestAuthorization(toShare: typesToWrite, read: typesToRead) {
