@@ -33,28 +33,27 @@ class WorkoutSummary {
   });
 
   /// Create a [WorkoutSummary] based on a health data point from native data format.
-  factory WorkoutSummary.fromHealthDataPoint(dynamic dataPoint) =>
-      WorkoutSummary(
+  factory WorkoutSummary.fromHealthDataPoint(dynamic dataPoint) => WorkoutSummary(
         workoutType: dataPoint['workout_type'] as String? ?? '',
         totalDistance: dataPoint['total_distance'] as num? ?? 0,
         totalEnergyBurned: dataPoint['total_energy_burned'] as num? ?? 0,
         totalSteps: dataPoint['total_steps'] as num? ?? 0,
         route: (dataPoint['route'] as List<dynamic>?)?.isNotEmpty ?? false
             ? (dataPoint['route'] as List<dynamic>?)!
-            .map((l) => RoutePoint(
-            longitude: l['longitude'] as double,
-            latitude: l['latitude'] as double,
-            altitude: l['altitude'] as double,
-            timestamp: l['timestamp'] as int,
-            horizontalAccuracy: l['horizontal_accuracy'] as double?,
-            verticalAccuracy: l['vertical_accuracy'] as double?))
-            .toList()
+                .map((l) => RoutePoint(
+                    longitude: l['longitude'] as double,
+                    latitude: l['latitude'] as double,
+                    altitude: l['altitude'] as double,
+                    timestamp: l['timestamp'] as int,
+                    horizontalAccuracy: l['horizontal_accuracy'] as double?,
+                    verticalAccuracy: l['vertical_accuracy'] as double?,
+                    speed: l['speed'] as double?))
+                .toList()
             : null,
       );
 
   /// Create a [HealthDataPoint] from json.
-  factory WorkoutSummary.fromJson(Map<String, dynamic> json) =>
-      _$WorkoutSummaryFromJson(json);
+  factory WorkoutSummary.fromJson(Map<String, dynamic> json) => _$WorkoutSummaryFromJson(json);
 
   /// Convert this [HealthDataPoint] to json.
   Map<String, dynamic> toJson() => _$WorkoutSummaryToJson(this);

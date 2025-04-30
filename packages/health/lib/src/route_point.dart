@@ -55,5 +55,5 @@ class RoutePoint {
       'timestamp: $timestamp, '
       'horizontalAccuracy: $horizontalAccuracy, '
       'verticalAccuracy: $verticalAccuracy, '
-      'speed: $speed, ';
+      'speed: $speed';
 }
